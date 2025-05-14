@@ -10,6 +10,10 @@
 #
 
 class Like < ApplicationRecord
+belongs_to(:fan, class_name: "User", foreign_key: "fan_id")
+belongs_to(:photo, class_name: "Photo", foreign_key: "photo_id")
+
+
   validates(:fan, { :presence => true })
   validates(:photo, { :presence => true })
   validates(:photo_id, { 
