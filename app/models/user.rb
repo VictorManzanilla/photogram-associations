@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many(:sent_follow_requests, class_name: "FollowRequest", foreign_key: "sender_id")
   has_many(:received_follow_requests, class_name: "FollowRequest", foreign_key: "recipient_id")
 
+  has_many(:liked_photos, through: :likes, source: :photo)
+  has_many(:commented_photos, through: :comments, source: :photo)
+
+  # User#commented_photos: returns rows from the photos table associated to this user through its comments
 
   validates(:username, {
     :presence => true,
